@@ -8,4 +8,13 @@ public class KeepsRepository
   {
     _db = db;
   }
+
+  internal async Task<Keep[]> GetAll()
+  {
+    string sql = @"SELECT * FROM keeps";
+
+    var keeps = await _db.QueryAsync<Keep>(sql);
+
+    return keeps.ToArray();
+  }
 }

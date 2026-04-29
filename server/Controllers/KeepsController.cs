@@ -12,4 +12,18 @@ public class KeepsController : ControllerBase
   {
     _keepsService = keepsService;
   }
+
+  [HttpGet]
+  public async Task<ActionResult<Keep[]>> GetAll()
+  {
+    try
+    {
+      Keep[] keeps = await _keepsService.GetAll();
+      return Ok(keeps);
+    }
+    catch (Exception exception)
+    {
+      return BadRequest(exception.Message);
+    }
+  }
 }

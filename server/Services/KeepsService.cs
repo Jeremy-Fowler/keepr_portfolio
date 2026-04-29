@@ -4,10 +4,15 @@ namespace keepr.Services;
 
 public class KeepsService
 {
-  private readonly KeepsRepository _keepsRepository;
+  private readonly KeepsRepository _repository;
 
-  public KeepsService(KeepsRepository keepsRepository)
+  public KeepsService(KeepsRepository repository)
   {
-    _keepsRepository = keepsRepository;
+    _repository = repository;
+  }
+
+  internal async Task<Keep[]> GetAll()
+  {
+    return await _repository.GetAll();
   }
 }
