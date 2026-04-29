@@ -11,7 +11,7 @@ public class KeepsService
     _repository = repository;
   }
 
-  internal async Task<Keep[]> GetAll()
+  internal async Task<KeepDTO[]> GetAll()
   {
     return await _repository.GetAll();
   }

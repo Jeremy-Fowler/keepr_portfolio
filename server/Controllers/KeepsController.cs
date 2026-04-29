@@ -14,11 +14,11 @@ public class KeepsController : ControllerBase
   }
 
   [HttpGet]
-  public async Task<ActionResult<Keep[]>> GetAll()
+  public async Task<ActionResult<KeepDTO[]>> GetAll()
   {
     try
     {
-      Keep[] keeps = await _keepsService.GetAll();
+      KeepDTO[] keeps = await _keepsService.GetAll();
       return Ok(keeps);
     }
     catch (Exception exception)
