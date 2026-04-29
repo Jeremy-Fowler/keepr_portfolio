@@ -1,0 +1,11 @@
+@import 'bootstrap/scss/bootstrap';
+
+#app {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+
+  main {
+    flex-grow: 1;
+  }
+}
