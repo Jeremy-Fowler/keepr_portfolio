@@ -20,9 +20,25 @@ public class KeepsRepository
 
   internal async Task<DetailedKeepDTO> GetById(int id)
   {
-    throw new Exception();
     string sql = @"
-    
-    ";
+    SELECT
+    keeps.id,
+    keeps.name,
+    img_url,
+    creator_id,
+    description,
+    views,
+    accounts.name AS creator_name,
+    accounts.picture AS creator_picture,
+    COUNT(vault_keeps.id) AS kept
+    FROM keeps
+    INNER JOIN accounts ON accounts.id = creator_id
+    LEFT JOIN vault_keeps ON keeps.id = keep_id
+    WHERE keeps.id = @Id
+    GROUP BY keeps.id;";
+
+    var keep = await _db.QueryAsync<DetailedKeepDTO>(sql, new { Id = id });
+
+    return keep.SingleOrDefault();
   }
 }

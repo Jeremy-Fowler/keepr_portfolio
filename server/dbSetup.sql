@@ -21,6 +21,29 @@ CREATE TABLE
     FOREIGN KEY (creator_id) REFERENCES accounts (id) ON DELETE CASCADE
   );
 
+CREATE TABLE
+  vaults (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    name VARCHAR(255) NOT NULL,
+    img_url VARCHAR(1000) NOT NULL,
+    is_private BOOLEAN NOT NULL,
+    creator_id VARCHAR(255) NOT NULL,
+    FOREIGN KEY (creator_id) REFERENCES accounts (id) ON DELETE CASCADE
+  );
+
+CREATE TABLE
+  vault_keeps (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    keep_id INT NOT NULL,
+    vault_id INT NOT NULL,
+    FOREIGN KEY (keep_id) REFERENCES keeps (id) ON DELETE CASCADE,
+    FOREIGN KEY (vault_id) REFERENCES vaults (id) ON DELETE CASCADE
+  );
+
 INSERT INTO
   keeps (name, description, img_url, creator_id)
 VALUES
@@ -61,3 +84,20 @@ FROM
   INNER JOIN accounts ON accounts.id = creator_id
 ORDER BY
   keeps.created_at;
+
+SELECT
+  keeps.id,
+  keeps.name,
+  img_url,
+  creator_id,
+  description,
+  views,
+  accounts.name AS creator_name,
+  accounts.picture AS creator_picture,
+  COUNT(vault_keeps.id) AS kept
+FROM
+  keeps
+  INNER JOIN accounts ON accounts.id = creator_id
+  LEFT JOIN vault_keeps ON keeps.id = keep_id
+GROUP BY
+  keeps.id;
