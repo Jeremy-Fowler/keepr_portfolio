@@ -18,3 +18,10 @@ public record KeepDTO
   public string CreatorName { get; init; }
   public string CreatorPicture { get; init; }
 }
+
+public record DetailedKeepDTO : KeepDTO
+{
+  public string Description { get; init; }
+  public int Views { get; init; }
+  public int Kept { get; init; }
+}

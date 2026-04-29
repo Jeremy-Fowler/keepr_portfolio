@@ -26,4 +26,18 @@ public class KeepsController : ControllerBase
       return BadRequest(exception.Message);
     }
   }
+
+  [HttpGet("{id}")]
+  public async Task<ActionResult<DetailedKeepDTO>> GetById(int id)
+  {
+    try
+    {
+      DetailedKeepDTO keep = await _keepsService.GetById(id);
+      return Ok(keep);
+    }
+    catch (Exception exception)
+    {
+      return BadRequest(exception.Message);
+    }
+  }
 }

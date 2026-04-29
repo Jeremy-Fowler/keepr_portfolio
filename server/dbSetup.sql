@@ -46,3 +46,18 @@ SELECT
 FROM
   keeps
   INNER JOIN accounts ON accounts.id = creator_id;
+
+CREATE VIEW
+  keeps_with_creators AS
+SELECT
+  keeps.id,
+  keeps.name,
+  img_url,
+  creator_id,
+  accounts.name AS creator_name,
+  accounts.picture AS creator_picture
+FROM
+  keeps
+  INNER JOIN accounts ON accounts.id = creator_id
+ORDER BY
+  keeps.created_at;
