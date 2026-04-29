@@ -1,4 +1,4 @@
-namespace server.Repositories;
+namespace keepr.Repositories;
 
 public class AccountsRepository
 {

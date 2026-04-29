@@ -1,4 +1,4 @@
-namespace server.Services;
+namespace keepr.Services;
 
 public class AccountService
 {

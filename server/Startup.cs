@@ -15,8 +15,8 @@ public class Startup
   public Startup(IConfiguration configuration)
   {
     Configuration = configuration;
-    
-      // converts snake_case to PascalCase
+
+    // converts snake_case to PascalCase
     DefaultTypeMap.MatchNamesWithUnderscores = true;
   }
 
@@ -38,14 +38,17 @@ public class Startup
     {
       o.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
     });
-    
+
     services.AddScoped<IDbConnection>(x => CreateDbConnection());
 
     services.AddScoped<AccountsRepository>();
     services.AddScoped<AccountService>();
+
+    services.AddScoped<KeepsRepository>();
+    services.AddScoped<KeepsService>();
   }
 
- private void ConfigureCors(IServiceCollection services)
+  private void ConfigureCors(IServiceCollection services)
   {
     services.AddCors(options =>
     {

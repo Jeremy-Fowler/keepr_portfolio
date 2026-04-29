@@ -11,6 +11,6 @@ global using Dapper;
 global using CodeWorks.Utils;
 
 // APPLICATION SPECIFIC
-global using server.Repositories;
-global using server.Services;
-global using server.Models;
+global using keepr.Repositories;
+global using keepr.Services;
+global using keepr.Models;

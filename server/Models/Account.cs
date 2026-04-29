@@ -1,4 +1,4 @@
-namespace server.Models;
+namespace keepr.Models;
 
 public class Account
 {

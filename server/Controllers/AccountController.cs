@@ -1,4 +1,4 @@
-namespace server.Controllers;
+namespace keepr.Controllers;
 
 [Authorize]
 [ApiController]
